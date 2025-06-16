@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable , StatusBar } from "react-native";
 import {  SafeAreaView } from "react-native-safe-area-context";
-import { RootStackParamList } from "../Navigation/RootNavigator";
+import { RootStackParamList } from "../../Navigation/RootNavigator";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 

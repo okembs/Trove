@@ -7,13 +7,11 @@ export default function Notifications() {
 
   })
   return (
-    <>
     <View style={styles.container}>
       <View style={styles.container2}>
         <Text style={styles.txt}> welcome to the notification </Text>
       </View>
     </View>
-    </>
   )
 }
 

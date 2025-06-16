@@ -11,8 +11,8 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from "react-native";
-import { RootStackParamList } from "../Navigation/RootNavigator";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "@/app/Navigation/RootNavigator";
 import { useFonts } from "expo-font";
 import { Platform } from "react-native";
 import { Inter_400Regular as Inter } from "@expo-google-fonts/inter";
@@ -74,26 +74,27 @@ export default function Login({ navigation }: Props) {
                 onBlur={() => setIsfocused(false)}
               />
 
-              <Pressable style={styles.btnstyle}>
-                <Text style={styles.textStyle}> Login </Text>
+              <Pressable
+                style={styles.btnstyle}
+                onPress={() => navigation.navigate("Tab")}
+              >
+                <Text style={styles.buttonText}> Login </Text>
               </Pressable>
 
-              <TouchableOpacity activeOpacity={10} style={styles.touchAble}>
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    fontFamily: "Inter",
-                  }}
-                >
-                  {" "}
-                  forgot password
-                </Text>
+              <TouchableOpacity
+                activeOpacity={10}
+                style={styles.touchAble}
+                onPress={() => navigation.navigate("SignIn")}
+              >
+                <Text style={styles.text}> forgot password</Text>
               </TouchableOpacity>
             </View>
 
             <View style={styles.con4}>
-              <Pressable style={styles.item} onPress={() => navigation.navigate('SignIn')}>
+              <Pressable
+                style={styles.item}
+                onPress={() => navigation.navigate("SignIn")}
+              >
                 <Text style={styles.t1}> dont have an account </Text>
                 <Text style={styles.t2}> sign in </Text>
               </Pressable>
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     flexDirection: "column",
     rowGap: 25,
-    backgroundColor: 'ghostwhite'
+    backgroundColor: "ghostwhite",
   },
   container2: {
     padding: 10,
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     margin: 12,
     padding: 10,
-    borderColor: '#bobobo',
+    borderColor: "#bobobo",
     borderRadius: 10,
     color: "white",
   },
@@ -169,7 +170,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#1652f0",
     margin: 15,
-  
   },
   touchAble: {
     height: 50,
@@ -186,14 +186,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
     paddingVertical: 15,
-    justifyContent:'center'
+    justifyContent: "center",
   },
   item: {
     paddingHorizontal: 10,
     paddingVertical: 10,
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom:10,
+    marginBottom: 10,
   },
   t1: {
     color: "black",
@@ -201,6 +201,14 @@ const styles = StyleSheet.create({
   },
   t2: {
     color: "gold",
-    fontFamily: 'Inter'
+    fontFamily: "Inter",
+  },
+  buttonText: {
+    color: "white",
+    fontFamily: "Inter",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 16,
+    letterSpacing: 1.2,
   },
 });

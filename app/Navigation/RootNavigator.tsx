@@ -1,21 +1,22 @@
 import React from "react";
-import { createStackNavigator  } from "@react-navigation/stack";
-import Home from "../Screens/Home";
+import { createStackNavigator } from "@react-navigation/stack";
+import { CardStyleInterpolators } from "@react-navigation/stack";
+import Home from "../Screens/Home/Home";
 import Profile from "./Info";
-import Login from "../Screens/Login";
-import SignIn from "../Screens/SignIn";
+import Login from "../Screens/Login/Login";
+import SignIn from "../Screens/singup/SignIn";
 import BottomNavigator from "./TabNavigator/BottomNavigator";
 import OnboardScreen from "../Onboarding/Onboard";
-import {  StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 export type RootStackParamList = {
   Home: undefined;
   Info: undefined;
   Login: undefined;
   SignIn: undefined;
   Tab: undefined;
-  Onboarding:undefined
+  Onboarding: undefined;
+  Otp: undefined;
 };
-
 
 const headerStyle: any = {
   headerTitle: "",
@@ -32,13 +33,25 @@ const headerStyle: any = {
   },
 };
 
+const config:any = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 500,
+    mass: 3,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};
+
 const Stack = createStackNavigator<RootStackParamList>();
 
-function RootNavigator(){
-  return(
+function RootNavigator() {
+  return (
     <>
-    <Stack.Navigator initialRouteName="Onboarding">
-       <Stack.Screen
+      <Stack.Navigator initialRouteName="Onboarding">
+        <Stack.Screen
           name="Home"
           component={Home}
           options={{
@@ -55,12 +68,16 @@ function RootNavigator(){
           options={{ title: "profile" }}
         />
         <Stack.Screen
-        name="Onboarding"
-        component={OnboardScreen}
-        options={{
-          headerShown: false
-        }}
-         />
+          name="Onboarding"
+          component={OnboardScreen}
+          options={{
+            headerShown: false,
+            transitionSpec:{
+              close:config,
+              open:config
+            }
+          }}
+        />
         <Stack.Screen
           name="Login"
           component={Login}
@@ -87,7 +104,7 @@ function RootNavigator(){
             headerTitle: "",
             headerStyle: {
               elevation: 0,
-              backgroundColor: "ghostwhite",
+             // backgroundColor: "white",
             },
             headerLeftContainerStyle: {
               padding: 0,
@@ -103,13 +120,14 @@ function RootNavigator(){
             headerTitle: "",
             headerStyle: {
               elevation: 0,
+              backgroundColor:'transparent'
             },
+            cardStyleInterpolator:CardStyleInterpolators.forFadeFromBottomAndroid
           }}
         />
-    </Stack.Navigator>
-    
+      </Stack.Navigator>
     </>
-  )
+  );
 }
 
 export default RootNavigator;
