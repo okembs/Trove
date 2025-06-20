@@ -18,11 +18,17 @@ import { Data } from "./OnboardingItems";
 import OnboardingItems from "./OnboardingItems";
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import { RootStackParamList } from "@/app/Navigation/RootNavigator";
+import Animated  ,  {useAnimatedScrollHandler , useSharedValue} from 'react-native-reanimated'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Onboarding' >
 
 function OnboardScreen({navigation}:Props) {
   const { width, height } = useWindowDimensions();
+
+  const scrolly = useSharedValue(0);
+  const handleScroll = useAnimatedScrollHandler((event:any)=>{
+    scrolly.value = event.offset.y;
+  })
 
   const Pagination = () => {
     return (
@@ -32,7 +38,7 @@ function OnboardScreen({navigation}:Props) {
             <View
               style={[
                 styles.paginDot,
-                { backgroundColor: currentImg === i ? "blue" : "ghostwhite" },
+                { backgroundColor: currentImg === i ? "blue" : "lightgrey" },
                 {width: currentImg === i ? 20  : 10},
                
               ]}
@@ -71,6 +77,7 @@ function OnboardScreen({navigation}:Props) {
       <StatusBar />
       <SafeAreaView style={styles.container}>
         <FlatList
+        
           data={Data}
           renderItem={({ item }) => <OnboardingItems title={item} key={item.id} />}
           keyExtractor={(item) => item.id}

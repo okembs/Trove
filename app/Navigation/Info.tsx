@@ -8,9 +8,11 @@ import { Pressable } from 'react-native';
 type Props = NativeStackScreenProps<RootStackParamList , 'Info'>
 export default function Info({navigation ,route}: Props){
     return(
+      <>
       <View style={styles.container}>
         <Pressable> click </Pressable>
-      </View>  
+      </View> 
+      </> 
     )
 }
 

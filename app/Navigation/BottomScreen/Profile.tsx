@@ -3,11 +3,11 @@ import {View , Text , StyleSheet , ScrollView} from 'react-native'
 
 function Profile() {
   return (
-    
+    <>
     <View style={styles.container}>
 
     </View>
-    
+    </>   
   )
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Noti from "../../assets/images/Noti.png";
 import Notified from "../../assets/images/Notifed.png";
@@ -6,6 +6,13 @@ import Delivery from "../../assets/images/delivery.png.png";
 import { useWindowDimensions } from "react-native";
 import { Inter_400Regular as Inter } from "@expo-google-fonts/inter";
 import { useFonts } from "expo-font";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
 
 interface Item {
   title: any;
@@ -35,11 +42,26 @@ export const Data: any[] = [
 function OnboardingItems({ title }: Item) {
   const { width, height } = useWindowDimensions();
 
+  const duration:number = 10;
+  const easing = Easing.bezier(0.25 , -0.5, 0.25 , 1)
+
+  const sv = useSharedValue<number>(0);
+
+  useEffect(()=>{
+    sv.value = withRepeat(withTiming(1 , {duration , easing}) , -1)
+  },[])
+
+
+    const animatedStyle = useAnimatedStyle(()=>({
+      transform: [{rotate: `${sv.value * 360 } deg`}]
+    }))
+ 
+
   const [fontLoaded] = useFonts({
     Inter,
   });
   return (
-    <>
+    
       <View style={[styles.container, { width:width, height: height }]}>
         <Image
           source={title.image}
@@ -49,10 +71,8 @@ function OnboardingItems({ title }: Item) {
           <Text style={styles.TextWord}>
             {title.text}
           </Text>
-
-      
       </View>
-    </>
+    
   );
 }
 

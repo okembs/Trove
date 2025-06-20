@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useRef , useCallback } from "react";
 import { View, Text, StyleSheet, Pressable , StatusBar } from "react-native";
 import {  SafeAreaView } from "react-native-safe-area-context";
 import { RootStackParamList } from "../../Navigation/RootNavigator";
@@ -8,7 +8,6 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 type Props = NativeStackScreenProps<RootStackParamList , 'Home'>
 export default  function Home({navigation} : Props) {
- 
   const [nameK, setNameK] = useState<string>("");
   return (
     <SafeAreaView>

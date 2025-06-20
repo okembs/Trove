@@ -1,17 +1,22 @@
 import React , {useState} from 'react';
 import {View , Text , StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "@/app/Navigation/RootNavigator";
 
+type Props = NativeStackScreenProps<RootStackParamList, 'Notifications' >
 export default function Notifications() {
   const[loaded] = useFonts({
 
   })
   return (
+    <>
     <View style={styles.container}>
       <View style={styles.container2}>
         <Text style={styles.txt}> welcome to the notification </Text>
       </View>
     </View>
+    </>
   )
 }
 

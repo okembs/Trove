@@ -8,6 +8,7 @@ import SignIn from "../Screens/singup/SignIn";
 import BottomNavigator from "./TabNavigator/BottomNavigator";
 import OnboardScreen from "../Onboarding/Onboard";
 import { StatusBar } from "react-native";
+import Notifications from "../Notifications/Notifications";
 export type RootStackParamList = {
   Home: undefined;
   Info: undefined;
@@ -16,6 +17,7 @@ export type RootStackParamList = {
   Tab: undefined;
   Onboarding: undefined;
   Otp: undefined;
+  Notifications:undefined;
 };
 
 const headerStyle: any = {
@@ -125,6 +127,12 @@ function RootNavigator() {
             cardStyleInterpolator:CardStyleInterpolators.forFadeFromBottomAndroid
           }}
         />
+         <Stack.Screen
+          name="Notifications"
+          component={Notifications}
+          options={{ title: "notifications" }}
+        />
+      
       </Stack.Navigator>
     </>
   );
